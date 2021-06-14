@@ -4,6 +4,8 @@ import requests
 from splinter import Browser
 import pymongo
 from pprint import pprint
+from flask import Flask
+from flask_pymongo import Pymongo
 
 #urls to scrape
 nasamarsurl = "https://mars.nasa.gov/news/"
