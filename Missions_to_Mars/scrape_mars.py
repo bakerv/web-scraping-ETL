@@ -1,11 +1,8 @@
 import pandas as pd
 from bs4 import BeautifulSoup as bs
-import requests
 from splinter import Browser
 import pymongo
-from pprint import pprint
-from flask import Flask
-from flask_pymongo import Pymongo
+
 
 #urls to scrape
 nasamarsurl = "https://mars.nasa.gov/news/"
@@ -165,7 +162,7 @@ def sf_scraper(scrapeurl,collection):
         
     sf_dict = extract_data(scrapeurl)
     load_data(sf_dict,collection)
-    
+
 def scrape(collection):
     '''
     Run all scraping funcitons, and save the data to a single dictionary
@@ -189,4 +186,4 @@ def scrape(collection):
 
     #Save data to a mongoDB database
     collection.drop()
-    collection.insert_one(document)
+    collection.insert_one(document)   
