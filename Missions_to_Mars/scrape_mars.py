@@ -112,29 +112,23 @@ def usgs_scraper(scrapeurl,collection):
         collection.drop()
         
         #create a list containing all subpage information
-        document = []
         for link in links:
             try:
                 rawdata = pull_data('http://astrogeology.usgs.gov' + link)
                 cleandata = clean_subpages(rawdata)
-                img_dict = {
+                document = {
                     'title': cleandata[0],
                     'img_url': cleandata[1],
-                    'dowloand_url': cleandata[2]
+                    'download_url': cleandata[2]
                 }
-                document.append(img_dict)
+                collection.insert_one(document)
                 
             except Exception as error:
                 print(error)
                 
-        #save to mongoDB       
-        collection.insert_one({'USGS_Mars_Hemispheres':document})
-        
-        return document
-                
     rawdata = pull_data(scrapeurl)
     links = find_subpages(rawdata)
-    load_data(links,collection) 
+    load_data(links,collection)  
     
 def sf_scraper(scrapeurl,collection):
     '''
@@ -186,4 +180,21 @@ def scrape(collection):
 
     #Save data to a mongoDB database
     collection.drop()
-    collection.insert_one(document)   
+    collection.insert_one(document) 
+
+def sf_table(collection):
+    """
+    Access the spacefacts collection in mongoDB and create a formated html table from the colection
+        Args:
+            collection (obj): spacefacts collection in mongoDB, connected using MongoClient
+    """
+    return (pd.DataFrame(collection.find())
+            #improve formating of the dataframe
+            .drop(columns="_id")
+            .T
+            .rename(columns={0:""})
+            
+            #convert the dataframe to an html table and clean up after the conversion
+            .to_html()
+            .replace("\n","")
+            )  

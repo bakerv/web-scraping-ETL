@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,redirect
 import pymongo
 import scrape_mars
 from pprint import pprint
@@ -18,13 +18,12 @@ def index():
     return render_template("index.html",
                             nasanews = nasamars_collection.find(),
                             usgsimages = usgsimages_collection.find(),
-                            spacefacts = spacefacts_collection.find() )
+                            spacefacts = scrape_mars.sf_table(spacefacts_collection))
 
 @app.route("/scrape")
-def scrape():
+def update_scrape():
     scrape_mars.scrape(scrape_collection)
-    return([x for x in scrape_collection.find('Nasa_Mars_Exploration_Aticles')])
-
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)

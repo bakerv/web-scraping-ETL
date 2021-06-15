@@ -12,47 +12,46 @@
     </head>
     <body>
         <div class="container text-center">
-            <h1 class="jumbotron">Mars Information</h1>
+            <h1 class="jumbotron">Mars Webscraping Data</h1>
+            <a class="btn btn-primary" href="/scrape" role="button" style ="background-color:black;">Scrape Fresh Data</a>
             <div>
-                <h2>Nasa Mars Exploration</h2>
+                <h2>Nasa Mars Exploration News</h2>
+                <h6>Soucrce:</h6>
           
                 {% for item in nasanews %}
-                <div class="col-lg-8">
-                    <div class="card" style="width: 60rem;">
-                        <div class="card-body">
-                          <h4 class="card-title"><a href="{{'https://mars.nasa.gov' ~ item.url ~ ''}}">{{ item.title}}</a></h4>
-                          <h6 class="card-subtitle mb-2 text-muted"></h6>{{ item.summary }}</h6>
+                <div class="col-lg-12 scroll">
+                    <a href ={{"https://mars.nasa.gov" ~item.url~ ""}}>
+                        <div class="card" style="width: 60rem;">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ item.title}}</h4>
+                                <h6 class="card-subtitle mb-2 text-muted"></h6>{{ item.summary }}</h6>
+                            </div>
                         </div>
-                      </div>
-                  </div>
-                  {% endfor %}
+                    </a>
+                </div>
+                {% endfor %}
 
                   <h2>USGS Mars Hemisphere Images</h2>
                   {% for item in usgsimages %}
-                  <div class="col-lg-8">
-                    <div class="card" style="width: 60rem;">
-                        <div class="card-body">
-                          <h4 class="card-title">{{ item.title}}</h4>
-                          <img src={{item.img_url}}>
-                          <h6 class="card-subtitle mb-2 text-muted"></h6><a href={{item.download_url}}>Download the Original Image</a></h6>
+                    <div class="col-lg-12">
+                        <div class="card" style="width: 60rem;">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ item.title}}</h4>
+                                <img src={{item.img_url}}>
+                                <h6 class="card-subtitle mb-2 text-muted"></h6><a href={{item.download_url}}>Download the Original Image</a></h6>
+                            </div>
                         </div>
-                      </div>
-                  </div>
+                    </div>
                   {% endfor %}
 
-                  <h2>Mars Data From Spacefacts.com</h2>
-                  {% for x in spacefacts %}
-                    {% for key,value in x.iteritems() %}
-                  <div class="col-lg-8">
-                    <div class="card" style="width: 60rem;">
-                        <div class="card-body">
-                          <h4 class="card-title">{{value}}</h4>
+                  <h2>Mars Planet Profile</h2>
+                  <div class="col-lg-12">
+                        <div class="card" style="width: 60rem;">
+                            <div class="card-body">
+                                <center>{{spacefacts | safe }}</center>
+                            </div>
                         </div>
-                      </div>
                   </div>
-                    {% endfor %}
-                  {% endfor %}
-      
             </div>
           </div>
        
