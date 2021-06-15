@@ -12,14 +12,16 @@
     </head>
     <body>
         <div class="container text-center">
-            <h1 class="jumbotron">Content Dump</h1>
+            <h1 class="jumbotron">Mars Information</h1>
             <div>
+                <h2>Nasa Mars Exploration</h2>
           
-                {% for item in list%}
-                <div class="col-lg-4">
-                    <div class="card" style="width: 20rem;">
+                {% for item in nasanews%}
+                <div class="col-lg-8">
+                    <div class="card" style="width: 60rem;">
                         <div class="card-body">
-                          <h4 class="card-title">{{ item}}</h4>
+                          <h4 class="card-title"><a href="{{'https://mars.nasa.gov' ~ item.url ~ ''}}">{{ item.title}}</a></h4>
+                          <h6 class="card-subtitle mb-2 text-muted"></h6>{{ item.summary }}</h6>
                         </div>
                       </div>
                   </div>
