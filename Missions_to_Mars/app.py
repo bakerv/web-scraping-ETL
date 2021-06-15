@@ -16,7 +16,7 @@ usgsimages_collection = client.mission_to_mars.usgsimages
 @app.route("/")
 def index():
     return render_template("index.html",
-                            nasanews = nasamars_collection.find(),
+                            nasanews = nasamars_collection.find().limit(3),
                             usgsimages = usgsimages_collection.find(),
                             spacefacts = scrape_mars.sf_table(spacefacts_collection))
 

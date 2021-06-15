@@ -8,52 +8,48 @@
         </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
     </head>
-    <body>
-        <div class="container text-center">
-            <h1 class="jumbotron">Mars Webscraping Data</h1>
-            <a class="btn btn-primary" href="/scrape" role="button" style ="background-color:black;">Scrape Fresh Data</a>
+    <body">
+        <div class="container-fluid text-left">
+            <h1 class="jumbotron text-center">Mars Exploration News</h1>
+            <p></p>
+            <center>
+                <a class="btn btn-primary" href="/scrape" role="button" style ="background-color:black">Scrape Fresh Data</a>
+            </center>
+            <p></p>
             <div>
-                <h2>Nasa Mars Exploration News</h2>
-                <h6>Soucrce:</h6>
-          
-                {% for item in nasanews %}
-                <div class="col-lg-12 scroll">
-                    <a href ={{"https://mars.nasa.gov" ~item.url~ ""}}>
-                        <div class="card" style="width: 60rem;">
-                            <div class="card-body">
-                                <h4 class="card-title">{{ item.title}}</h4>
-                                <h6 class="card-subtitle mb-2 text-muted"></h6>{{ item.summary }}</h6>
-                            </div>
+                <div class = "row">
+                        <div class="col-md-8 text-left">
+                            {% for item in nasanews %}
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-left">{{ item.title}}</h4>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{ item.summary }}</h6>
+                                        <p></p>
+                                        <a href ={{"https://mars.nasa.gov" ~item.url~ ""}}><h6>Read More</h6></a>
+                                    </div>
+                                </div>
+                                {% endfor %}
                         </div>
-                    </a>
-                </div>
-                {% endfor %}
-
-                  <h2>USGS Mars Hemisphere Images</h2>
-                  {% for item in usgsimages %}
-                    <div class="col-lg-12">
-                        <div class="card" style="width: 60rem;">
-                            <div class="card-body">
-                                <h4 class="card-title">{{ item.title}}</h4>
-                                <img src={{item.img_url}}>
-                                <h6 class="card-subtitle mb-2 text-muted"></h6><a href={{item.download_url}}>Download the Original Image</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                  {% endfor %}
-
-                  <h2>Mars Planet Profile</h2>
-                  <div class="col-lg-12">
-                        <div class="card" style="width: 60rem;">
-                            <div class="card-body">
-                                <center>{{spacefacts | safe }}</center>
-                            </div>
-                        </div>
+                  <div class="col-md-4">
+                    <center><h4>Mars Planet Profile</h4>{{spacefacts | safe }}</center>
                   </div>
+                </div>
+                <p></p>
+                  <div class="row" style>
+                    {% for item in usgsimages %}
+                    <div class="col-md-3">
+                        <h5>{{item.title}}</h5>
+                      <a href = {{item.download_url}}>
+                      <img class="chart" src={{item.img_url}}>
+                      </a>
+                    </div>
+                    {% endfor %}
+                  </div> 
             </div>
           </div>
-       
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script> 
     </body>
 </html>
