@@ -15,7 +15,10 @@ usgsimages_collection = client.mission_to_mars.usgsimages
 
 @app.route("/")
 def index():
-    return render_template("index.html", nasanews = nasamars_collection.find(), usgsimages = usgsimages_collection.find())
+    return render_template("index.html",
+                            nasanews = nasamars_collection.find(),
+                            usgsimages = usgsimages_collection.find(),
+                            spacefacts = spacefacts_collection.find() )
 
 @app.route("/scrape")
 def scrape():

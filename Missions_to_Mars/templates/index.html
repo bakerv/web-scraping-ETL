@@ -16,7 +16,7 @@
             <div>
                 <h2>Nasa Mars Exploration</h2>
           
-                {% for item in nasanews%}
+                {% for item in nasanews %}
                 <div class="col-lg-8">
                     <div class="card" style="width: 60rem;">
                         <div class="card-body">
@@ -25,6 +25,32 @@
                         </div>
                       </div>
                   </div>
+                  {% endfor %}
+
+                  <h2>USGS Mars Hemisphere Images</h2>
+                  {% for item in usgsimages %}
+                  <div class="col-lg-8">
+                    <div class="card" style="width: 60rem;">
+                        <div class="card-body">
+                          <h4 class="card-title">{{ item.title}}</h4>
+                          <img src={{item.img_url}}>
+                          <h6 class="card-subtitle mb-2 text-muted"></h6><a href={{item.download_url}}>Download the Original Image</a></h6>
+                        </div>
+                      </div>
+                  </div>
+                  {% endfor %}
+
+                  <h2>Mars Data From Spacefacts.com</h2>
+                  {% for x in spacefacts %}
+                    {% for key,value in x.iteritems() %}
+                  <div class="col-lg-8">
+                    <div class="card" style="width: 60rem;">
+                        <div class="card-body">
+                          <h4 class="card-title">{{value}}</h4>
+                        </div>
+                      </div>
+                  </div>
+                    {% endfor %}
                   {% endfor %}
       
             </div>
