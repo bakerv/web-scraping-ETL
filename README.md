@@ -5,13 +5,14 @@ This challenge uses Python, Pandas, Beautiful Soup, Splinter, PyMongo, Flask, an
 
 Splinter was used to connect to, navigate, and save the html for each page visited. The code was then parsed using Beautiful soup, and the desired content extracted. This content was loaded into mongoDB using the PyMongo library for Python. 
 
-![ETL Code Sample]()
+![ETL Code Sample](https://github.com/bakerv/web-scraping-challenge/blob/main/Missions_to_Mars/Resources/ETL_Code_Sample.PNG)
 
 ## Presentation
 
-A Flask app was created to correctly read the stored data from mongoDB into an HTML template. Included in the template is a button to rescrape all data sources, updated the contents of the database, and then update the html template. This allows users to view up to date data on demand. 
+A Flask app was created to correctly read the stored data from mongoDB into an HTML template. Included in the template is a button to rescrape all data sources, update the contents of the database, and then refresh the webpage with the new data. This allows users to view freshly scraped data on demand. 
 
-![Website Screenshot]()
+![Website Sample](https://github.com/bakerv/web-scraping-challenge/blob/main/Missions_to_Mars/Resources/Webpage_Sample.PNG)
+
 
 ## Data Sources:
 
